@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmService } from './data/services/typeorm/typeorm.service';
 
 @Module({
-  providers: [TypeOrmService],
+  providers: [],
   exports: [],
 })
 export class SharedModule {}

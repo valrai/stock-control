@@ -1,8 +1,8 @@
-import { TypeOrmService } from './shared/data/services/typeorm/typeorm.service';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductsModule } from './products/products.module';
+import { getConnectionOptions } from 'typeorm';
+import { StockModule } from './stock/stock.module';
 import { SharedModule } from './shared/shared.module';
 
 @Module({
@@ -11,8 +11,13 @@ import { SharedModule } from './shared/shared.module';
       isGlobal: true,
       envFilePath: ['.env', '.development.env'],
     }),
-    TypeOrmModule.forRoot(TypeOrmService.TypeOrmConfig),
-    ProductsModule,
+    TypeOrmModule.forRootAsync({
+      useFactory: async () =>
+        Object.assign(await getConnectionOptions(), {
+          autoLoadEntities: true,
+        }),
+    }),
+    StockModule,
     ConfigModule,
     SharedModule,
   ],
