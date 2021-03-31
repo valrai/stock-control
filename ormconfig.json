@@ -6,9 +6,9 @@
     "password": "mestres.da.web",
     "database": "STOCK_CONTROL",
     "synchronize": false,
-    "entities": ["src/**/*.entity.ts"],    
+    "entities": ["dist/**/*.entity.js"],    
     "migrationsTableName": "MIGRATIONS",    
-    "migrations": ["src/shared/data/migrations/*.{ts,js}"],    
+    "migrations": ["dist/shared/data/migrations/*.js"],    
     "cli": {
         "migrationsDir": "src/shared/data/migrations"
     }

@@ -1,5 +1,5 @@
-import { ProductOptions } from './../product-options/product.options.entity';
-import { ProductCategory } from './../product-category/product.category.entity';
+import { Category } from './../category/category.entity';
+import { Option } from '../option/option.entity';
 import { IAuditableEntity } from 'src/shared/interfaces/auditable.interface';
 import { IBaseEntity } from 'src/shared/interfaces/base.interface';
 import { ILogicallyExcludableEntity } from 'src/shared/interfaces/logically.excludable.interface';
@@ -9,14 +9,14 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProductVariants } from './../product-variants/product.variants.entity';
-import { Supplier } from './../supplier/supplier.entity';
+import { Supplier } from '../supplier/supplier.entity';
+import { ProductVariant } from '../product-variant/product.variant.entity';
 
 @Entity({ name: 'PRODUCTS' })
 export class Product
@@ -26,9 +26,6 @@ export class Product
 
   @Column()
   name: string;
-
-  @Column()
-  category_id: number;
 
   @Column('timestamp', { name: 'created_at' })
   @CreateDateColumn()
@@ -50,19 +47,44 @@ export class Product
   @JoinColumn({ name: 'supplier_id' })
   supplier: Supplier;
 
-  @OneToMany(() => ProductCategory, (pc) => pc.product, {
+  @ManyToMany(() => Category, (category) => category.products, {
     onDelete: 'CASCADE',
-    nullable: false,
   })
-  productCategories: ProductCategory[];
+  @JoinTable({
+    name: 'PRODUCT_CATEGORIES',
 
-  @OneToMany(() => ProductOptions, (po) => po.product, {
-    onDelete: 'CASCADE',
-  })
-  productOptions: ProductOptions[];
+    joinColumn: {
+      name: 'category_id',
+      referencedColumnName: 'id',
+    },
 
-  @ManyToMany(() => ProductVariants, (pv) => pv.product, {
+    inverseJoinColumn: {
+      name: 'product_id',
+      referencedColumnName: 'id',
+    },
+  })
+  categories: Category[];
+
+  @ManyToMany(() => Option, (option) => option.products, {
     onDelete: 'CASCADE',
   })
-  variants: ProductVariants[];
+  @JoinTable({
+    name: 'PRODUCT_OPTIONS',
+
+    joinColumn: {
+      name: 'option_id',
+      referencedColumnName: 'id',
+    },
+
+    inverseJoinColumn: {
+      name: 'product_id',
+      referencedColumnName: 'id',
+    },
+  })
+  options: Option[];
+
+  @ManyToMany(() => ProductVariant, (pv) => pv.product, {
+    onDelete: 'CASCADE',
+  })
+  variants: ProductVariant[];
 }
