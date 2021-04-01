@@ -4,7 +4,7 @@ services:
     image: postgres:12.6
     restart: always
     env_file:
-      - .env
+      - .development.env
     logging:
       options:
         max-size: 10m
