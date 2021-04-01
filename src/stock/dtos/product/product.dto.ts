@@ -1,6 +1,6 @@
-import { Category } from './../category/category.entity';
 import { SupplierDto } from './../supplier/supplier.dto';
 import { IsDefined, IsString, IsEmpty, ValidateNested } from 'class-validator';
+import { Category } from 'src/stock/models/category/category.entity';
 
 export class ProductDto {
   @IsString({ always: true })

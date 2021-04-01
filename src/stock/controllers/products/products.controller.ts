@@ -1,4 +1,3 @@
-import { ProductDto } from './../../models/product/product.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import {
   CreateManyDto,
@@ -14,6 +13,7 @@ import { Product } from 'src/stock/models/product/product.entity';
 import { ProductService } from 'src/stock/services/product/product.service';
 import { IsNull, Not } from 'typeorm';
 import { Claims } from 'src/shared/auth/decorators/claims.decorator';
+import { ProductDto } from 'src/stock/dtos/product/product.dto';
 
 @Crud({
   model: {

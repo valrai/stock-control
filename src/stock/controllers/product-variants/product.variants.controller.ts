@@ -1,4 +1,3 @@
-import { ProductVariantDto } from './../../models/product-variant/product.variant.dto';
 import {
   Crud,
   CrudRequest,
@@ -14,6 +13,7 @@ import { Controller } from '@nestjs/common';
 import { ProductVariantService } from 'src/stock/services/product-variant/product.variant.service';
 import { IsNull, Not } from 'typeorm';
 import { Claims } from 'src/shared/auth/decorators/claims.decorator';
+import { ProductVariantDto } from 'src/stock/dtos/product-variant/product.variant.dto';
 
 @Crud({
   model: {

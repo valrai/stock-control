@@ -1,6 +1,3 @@
-import { OptionDto } from 'src/stock/models/option/option.dto';
-import { OptionValueDto } from 'src/stock/models/option-value/option.value.dto';
-import { ProductDto } from 'src/stock/models/product/product.dto';
 import {
   IsDefined,
   IsString,
@@ -8,6 +5,9 @@ import {
   ValidateNested,
   IsNumber,
 } from 'class-validator';
+import { OptionValueDto } from '../option-value/option.value.dto';
+import { OptionDto } from '../option/option.dto';
+import { ProductDto } from '../product/product.dto';
 
 export class ProductVariantDto {
   @IsString({ always: true })

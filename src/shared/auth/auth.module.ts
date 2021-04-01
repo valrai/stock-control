@@ -1,21 +1,21 @@
-import { UserRepository } from './../users/repository/user.repository';
-import { JwtModule } from '@nestjs/jwt';
-import { Claim } from './models/claim/claim.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
-import { RoleService } from './services/role/role.service';
-import { ClaimService } from './services/claim/claim.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserRepository } from './../users/repository/user.repository';
+import { AuthController } from './controllers/auth/auth.controller';
 import { ClaimsController } from './controllers/claim/claim.controller';
 import { RolesController } from './controllers/role/role.controller';
+import { ClaimGuard } from './guards/claim.guard';
+import { JwtAuthGuard } from './guards/jwt.auth.guard';
+import { Claim } from './models/claim/claim.entity';
 import { Role } from './models/role/role.entity';
 import { AuthService } from './services/auth/auth.service';
-import { AuthController } from './controllers/auth/auth.controller';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ClaimService } from './services/claim/claim.service';
 import { JwtStrategyService } from './services/jwt-strategy/jwt.strategy.service';
-import { PassportModule } from '@nestjs/passport';
-import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './guards/jwt.auth.guard';
-import { ClaimGuard } from './guards/claim.guard';
+import { RoleService } from './services/role/role.service';
 
 @Module({
   imports: [

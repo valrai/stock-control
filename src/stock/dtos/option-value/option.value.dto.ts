@@ -1,6 +1,6 @@
-import { ProductVariant } from '../product-variant/product.variant.entity';
 import { OptionDto } from '../option/option.dto';
 import { IsDefined, IsString, IsEmpty, ValidateNested } from 'class-validator';
+import { ProductVariant } from 'src/stock/models/product-variant/product.variant.entity';
 
 export class OptionValueDto {
   @IsDefined({ always: true })

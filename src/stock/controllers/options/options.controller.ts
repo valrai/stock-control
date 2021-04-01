@@ -10,10 +10,10 @@ import {
 } from '@nestjsx/crud';
 import { Option } from '../../models/option/option.entity';
 import { Controller } from '@nestjs/common';
-import { OptionDto } from 'src/stock/models/option/option.dto';
 import { OptionService } from 'src/stock/services/option/option.service';
 import { IsNull, Not } from 'typeorm';
 import { Claims } from 'src/shared/auth/decorators/claims.decorator';
+import { OptionDto } from 'src/stock/dtos/option/option.dto';
 
 @Crud({
   model: {
