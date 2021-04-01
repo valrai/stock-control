@@ -8,4 +8,9 @@ export class OptionValueService extends TypeOrmCrudService<OptionValue> {
   constructor(@InjectRepository(OptionValue) repo) {
     super(repo);
   }
+
+  async markDeleted(id: number) {
+    await this.repo.softDelete({ id });
+    return;
+  }
 }

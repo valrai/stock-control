@@ -13,7 +13,8 @@ async function bootstrap() {
   const swaggerOptions = new DocumentBuilder()
     .setTitle('Stock Control')
     .setDescription('Api service for stock control of clothing stores')
-    .setVersion('1.0')
+    .setVersion('1.0.0')
+    .addBearerAuth()
     .build();
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerOptions);

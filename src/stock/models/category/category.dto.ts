@@ -1,6 +1,9 @@
 import { IsDefined, IsString, IsEmpty } from 'class-validator';
+import { Product } from '../product/product.entity';
 
 export class CategoryDto {
+  id: number;
+
   @IsDefined({ always: true })
   @IsString({ always: true })
   name: string;
@@ -9,5 +12,8 @@ export class CategoryDto {
   createdAt: Date;
 
   @IsEmpty({ always: true })
-  updatedAt: Date;
+  updatedAt?: Date;
+
+  @IsEmpty({ always: true })
+  products: Product[];
 }

@@ -1,26 +1,26 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class stockTables1617159450107 implements MigrationInterface {
-  name = 'stockTables1617159450107';
+export class stockTables1617204429367 implements MigrationInterface {
+  name = 'stockTables1617204429367';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE "OPTION_VALUES" ("id" SERIAL NOT NULL, "OPTION_VALUES" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), "deletedAt" TIMESTAMP, "option_id" integer NOT NULL, CONSTRAINT "PK_30a41fc4f08e3e9a825b29cd14a" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "OPTION_VALUES" ("id" SERIAL NOT NULL, "OPTION_VALUES" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, "option_id" integer NOT NULL, CONSTRAINT "PK_30a41fc4f08e3e9a825b29cd14a" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "PRODUCT_VARIANTS" ("id" SERIAL NOT NULL, "sku" character varying NOT NULL, "cost-price" double precision NOT NULL, "sale-price" double precision NOT NULL, "quantity" integer NOT NULL DEFAULT '0', "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), "deletedAt" TIMESTAMP, "product_id" integer NOT NULL, "option_id" integer NOT NULL, "option_value_id" integer NOT NULL, CONSTRAINT "UQ_9a3ad1880ca8975ccddc43a8a63" UNIQUE ("sku"), CONSTRAINT "PK_dffed2e6fb2dcce1972ca984b4d" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "PRODUCT_VARIANTS" ("id" SERIAL NOT NULL, "sku" character varying NOT NULL, "cost-price" double precision NOT NULL, "sale-price" double precision NOT NULL, "quantity" integer NOT NULL DEFAULT '0', "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, "product_id" integer NOT NULL, "option_id" integer NOT NULL, "option_value_id" integer NOT NULL, CONSTRAINT "UQ_9a3ad1880ca8975ccddc43a8a63" UNIQUE ("sku"), CONSTRAINT "PK_dffed2e6fb2dcce1972ca984b4d" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "OPTIONS" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), "deletedAt" TIMESTAMP, CONSTRAINT "PK_9d9bcb5d4b5b685720ad55a5dd7" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "OPTIONS" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, CONSTRAINT "PK_9d9bcb5d4b5b685720ad55a5dd7" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "SUPPLIER" ("id" SERIAL NOT NULL, "cnpj" character varying(14) NOT NULL, "trade_name" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), "deletedAt" TIMESTAMP, CONSTRAINT "UQ_56352314d9f50a30da17725ee71" UNIQUE ("cnpj"), CONSTRAINT "PK_d2c9186c84d9da1f20e94d4616a" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "SUPPLIER" ("id" SERIAL NOT NULL, "cnpj" character varying(14) NOT NULL, "trade_name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, CONSTRAINT "UQ_56352314d9f50a30da17725ee71" UNIQUE ("cnpj"), CONSTRAINT "PK_d2c9186c84d9da1f20e94d4616a" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "PRODUCTS" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), "deletedAt" TIMESTAMP, "supplier_id" integer NOT NULL, CONSTRAINT "PK_2fe88715843405b725ad16c32fc" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "PRODUCTS" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, "supplier_id" integer NOT NULL, CONSTRAINT "PK_2fe88715843405b725ad16c32fc" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "CATEGORIES" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_fdcef262c7ee3ae985f62b3695f" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "CATEGORIES" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_fdcef262c7ee3ae985f62b3695f" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "PRODUCT_CATEGORIES" ("category_id" integer NOT NULL, "product_id" integer NOT NULL, CONSTRAINT "PK_ad11f74b1cfc6f89f929008dc68" PRIMARY KEY ("category_id", "product_id"))`,
@@ -97,6 +97,7 @@ export class stockTables1617159450107 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "OPTION_VALUES" DROP CONSTRAINT "FK_5442e20bb0c03fdcbf09866325a"`,
     );
+
     await queryRunner.query(`DROP INDEX "IDX_ed517744ff05cb135cba2b46cd"`);
     await queryRunner.query(`DROP INDEX "IDX_98ad55529f73a7e97584c8ca49"`);
     await queryRunner.query(`DROP TABLE "PRODUCT_OPTIONS"`);

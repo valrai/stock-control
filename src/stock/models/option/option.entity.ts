@@ -24,16 +24,16 @@ export class Option
   @Column()
   name: string;
 
-  @Column('timestamp', { name: 'created_at' })
-  @CreateDateColumn()
+  @Column('timestamp')
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @Column('timestamp', { name: 'updated_at' })
-  @UpdateDateColumn()
+  @Column('timestamp')
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt?: Date;
 
-  @Column('timestamp', { name: 'deleted_at' })
-  @DeleteDateColumn()
+  @Column('timestamp')
+  @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt?: Date;
 
   @ManyToMany(() => Product, (product) => product.options)

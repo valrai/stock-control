@@ -8,4 +8,9 @@ export class SupplierService extends TypeOrmCrudService<Supplier> {
   constructor(@InjectRepository(Supplier) repo) {
     super(repo);
   }
+
+  async markDeleted(id: number) {
+    await this.repo.softDelete({ id });
+    return;
+  }
 }

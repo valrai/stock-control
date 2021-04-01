@@ -1,9 +1,19 @@
-import { ApiTags } from '@nestjs/swagger';
-import { Crud } from '@nestjsx/crud';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  Crud,
+  CrudRequest,
+  Override,
+  CreateManyDto,
+  ParsedBody,
+  ParsedRequest,
+  CrudController,
+} from '@nestjsx/crud';
 import { Option } from '../../models/option/option.entity';
 import { Controller } from '@nestjs/common';
 import { OptionDto } from 'src/stock/models/option/option.dto';
 import { OptionService } from 'src/stock/services/option/option.service';
+import { IsNull, Not } from 'typeorm';
+import { Claims } from 'src/shared/auth/decorators/claims.decorator';
 
 @Crud({
   model: {
@@ -23,8 +33,89 @@ import { OptionService } from 'src/stock/services/option/option.service';
     },
   },
 })
+@ApiBearerAuth()
 @ApiTags('options')
 @Controller('options')
-export class OptionsController {
-  constructor(private service: OptionService) {}
+export class OptionsController implements CrudController<OptionDto> {
+  constructor(public service: OptionService) {}
+
+  get base(): CrudController<OptionDto> {
+    return this;
+  }
+
+  @Claims('register-one-option')
+  @Override()
+  async createOne(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: OptionDto,
+  ) {
+    const entity = await this.service.findOne({
+      withDeleted: true,
+      where: { name: dto.name, deletedAt: Not(IsNull()) },
+    });
+
+    if (entity != null) {
+      return this.service.recoverOne(req);
+    }
+
+    return this.base.createOneBase(req, dto);
+  }
+
+  @Claims('list-all-options')
+  @Override()
+  async getMany(@ParsedRequest() req: CrudRequest) {
+    return await this.base.getManyBase(req);
+  }
+
+  @Claims('find-one-option')
+  @Override()
+  async getOneBase(@ParsedRequest() req: CrudRequest) {
+    return await this.base.getOneBase(req);
+  }
+
+  @Claims('register-many-options')
+  @Override()
+  async createMany(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: CreateManyDto<OptionDto>,
+  ) {
+    return await this.base.createManyBase(req, dto);
+  }
+
+  @Claims('update-one-option')
+  @Override()
+  async updateOneBase(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: OptionDto,
+  ) {
+    return await this.base.updateOneBase(req, dto);
+  }
+
+  @Claims('replace-one-option')
+  @Override()
+  async replaceOneBase(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: OptionDto,
+  ) {
+    return await this.base.replaceOneBase(req, dto);
+  }
+
+  async recoverOneBase(req: CrudRequest) {
+    return await this.base.recoverOneBase(req);
+  }
+
+  @Claims('delete-one-option')
+  @Override()
+  async deleteOne(@ParsedRequest() req: CrudRequest) {
+    const entity = await this.getOneBase(req);
+    const id = req.parsed.paramsFilter.find(
+      (f) => f.field === 'id' && f.operator === '$eq',
+    ).value;
+
+    if (entity && entity.deletedAt != null) {
+      return await this.service.markDeleted(id);
+    }
+
+    return await this.base.deleteOneBase(req);
+  }
 }

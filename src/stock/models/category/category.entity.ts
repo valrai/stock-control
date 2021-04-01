@@ -18,12 +18,12 @@ export class Category implements IBaseEntity, IAuditableEntity {
   @Column()
   name: string;
 
-  @Column('timestamp', { name: 'created_at' })
-  @CreateDateColumn()
+  @Column('timestamp')
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @Column('timestamp', { name: 'updated_at' })
-  @UpdateDateColumn()
+  @Column('timestamp')
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt?: Date;
 
   @OneToMany(() => Product, (product) => product.categories, {
