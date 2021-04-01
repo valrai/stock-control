@@ -1,18 +1,30 @@
+import { RoleService } from './../../services/role/role.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { RoleController } from './role.controller';
+import { RolesController } from './role.controller';
+
+const mockRoleService = () => ({});
 
 describe('RoleController', () => {
-  let controller: RoleController;
+  let controller: RolesController;
+  let service: RoleService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [RoleController],
+      controllers: [RolesController],
+      providers: [
+        {
+          provide: RoleService,
+          useFactory: mockRoleService,
+        },
+      ],
     }).compile();
 
-    controller = module.get<RoleController>(RoleController);
+    controller = module.get<RolesController>(RolesController);
+    service = module.get<RoleService>(RoleService);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+    expect(service).toBeDefined();
   });
 });

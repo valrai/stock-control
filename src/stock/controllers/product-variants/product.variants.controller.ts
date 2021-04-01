@@ -1,3 +1,7 @@
+import { Claims } from './../../../shared/auth/decorators/claims.decorator';
+import { ProductVariantService } from './../../services/product-variant/product.variant.service';
+import { ProductVariantDto } from '../../dtos/product-variant/product.variant.dto';
+import { ProductVariant } from './../../models/product-variant/product.variant.entity';
 import {
   Crud,
   CrudRequest,
@@ -8,12 +12,8 @@ import {
   CrudController,
 } from '@nestjsx/crud';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { ProductVariant } from 'src/stock/models/product-variant/product.variant.entity';
 import { Controller } from '@nestjs/common';
-import { ProductVariantService } from 'src/stock/services/product-variant/product.variant.service';
 import { IsNull, Not } from 'typeorm';
-import { Claims } from 'src/shared/auth/decorators/claims.decorator';
-import { ProductVariantDto } from 'src/stock/dtos/product-variant/product.variant.dto';
 
 @Crud({
   model: {

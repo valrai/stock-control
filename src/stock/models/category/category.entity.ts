@@ -1,5 +1,5 @@
-import { IAuditableEntity } from 'src/shared/interfaces/auditable.interface';
-import { IBaseEntity } from 'src/shared/interfaces/base.interface';
+import { IAuditableEntity } from './../../../shared/interfaces/auditable.interface';
+import { IBaseEntity } from './../../../shared/interfaces/base.interface';
 import {
   Column,
   Entity,

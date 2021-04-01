@@ -1,5 +1,5 @@
+import { Product } from './../../models/product/product.entity';
 import { IsDefined, IsString, IsEmpty } from 'class-validator';
-import { Product } from 'src/stock/models/product/product.entity';
 
 export class CategoryDto {
   id: number;

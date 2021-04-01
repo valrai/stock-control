@@ -1,5 +1,3 @@
-import { ProductVariant } from '../product-variant/product.variant.entity';
-import { OptionValue } from '../option-value/option.value.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,10 +8,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IBaseEntity } from 'src/shared/interfaces/base.interface';
-import { IAuditableEntity } from 'src/shared/interfaces/auditable.interface';
-import { ILogicallyExcludableEntity } from 'src/shared/interfaces/logically.excludable.interface';
+import { OptionValue } from '../option-value/option.value.entity';
+import { ProductVariant } from '../product-variant/product.variant.entity';
 import { Product } from '../product/product.entity';
+import { IAuditableEntity } from './../../../shared/interfaces/auditable.interface';
+import { IBaseEntity } from './../../../shared/interfaces/base.interface';
+import { ILogicallyExcludableEntity } from './../../../shared/interfaces/logically.excludable.interface';
 
 @Entity({ name: 'OPTIONS' })
 export class Option

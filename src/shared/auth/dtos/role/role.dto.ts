@@ -1,6 +1,6 @@
+import { UserDto } from './../../../users/dtos/user.dto';
 import { ClaimDto } from './../claim/claim.dto';
 import { IsDefined, IsEmpty, IsString, ValidateNested } from 'class-validator';
-import { UserDto } from 'src/shared/users/dtos/user.dto';
 
 export class RoleDto {
   id: number;

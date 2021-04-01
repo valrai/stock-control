@@ -1,3 +1,4 @@
+import { Role } from '../../auth/models/role/role.entity';
 import {
   IsDefined,
   IsEmail,
@@ -6,7 +7,6 @@ import {
   MaxLength,
   ValidateNested,
 } from 'class-validator';
-import { Role } from 'src/shared/auth/models/role/role.entity';
 
 export class UserDto {
   id: number;

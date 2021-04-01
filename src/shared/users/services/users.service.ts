@@ -1,5 +1,5 @@
+import { User } from '../../users/models/user.entity';
 import { UserRepository } from './../repository/user.repository';
-import { User } from 'src/shared/users/models/user.entity';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 

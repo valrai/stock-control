@@ -1,3 +1,5 @@
+import { Claims } from './../../../shared/auth/decorators/claims.decorator';
+import { SupplierDto } from './../../dtos/supplier/supplier.dto';
 import { SupplierService } from '../../services/supplier/supplier.service';
 import { Supplier } from '../../models/supplier/supplier.entity';
 import { Controller } from '@nestjs/common';
@@ -12,8 +14,6 @@ import {
 } from '@nestjsx/crud';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { IsNull, Not } from 'typeorm';
-import { Claims } from 'src/shared/auth/decorators/claims.decorator';
-import { SupplierDto } from 'src/stock/dtos/supplier/supplier.dto';
 
 @Crud({
   model: {

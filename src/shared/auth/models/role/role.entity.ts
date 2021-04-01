@@ -1,5 +1,5 @@
+import { User } from '../../../users/models/user.entity';
 import { Claim } from './../claim/claim.entity';
-import { User } from 'src/shared/users/models/user.entity';
 import { IAuditableEntity } from './../../../interfaces/auditable.interface';
 import { IBaseEntity } from './../../../interfaces/base.interface';
 import {

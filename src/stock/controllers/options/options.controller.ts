@@ -1,3 +1,6 @@
+import { Claims } from './../../../shared/auth/decorators/claims.decorator';
+import { OptionService } from './../../services/option/option.service';
+import { OptionDto } from '../../dtos/option/option.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import {
   Crud,
@@ -10,10 +13,7 @@ import {
 } from '@nestjsx/crud';
 import { Option } from '../../models/option/option.entity';
 import { Controller } from '@nestjs/common';
-import { OptionService } from 'src/stock/services/option/option.service';
 import { IsNull, Not } from 'typeorm';
-import { Claims } from 'src/shared/auth/decorators/claims.decorator';
-import { OptionDto } from 'src/stock/dtos/option/option.dto';
 
 @Crud({
   model: {

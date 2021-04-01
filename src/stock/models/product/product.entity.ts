@@ -1,8 +1,3 @@
-import { Category } from './../category/category.entity';
-import { Option } from '../option/option.entity';
-import { IAuditableEntity } from 'src/shared/interfaces/auditable.interface';
-import { IBaseEntity } from 'src/shared/interfaces/base.interface';
-import { ILogicallyExcludableEntity } from 'src/shared/interfaces/logically.excludable.interface';
 import {
   Column,
   CreateDateColumn,
@@ -15,8 +10,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Supplier } from '../supplier/supplier.entity';
+import { Option } from '../option/option.entity';
 import { ProductVariant } from '../product-variant/product.variant.entity';
+import { Supplier } from '../supplier/supplier.entity';
+import { IAuditableEntity } from './../../../shared/interfaces/auditable.interface';
+import { IBaseEntity } from './../../../shared/interfaces/base.interface';
+import { ILogicallyExcludableEntity } from './../../../shared/interfaces/logically.excludable.interface';
+import { Category } from './../category/category.entity';
 
 @Entity({ name: 'PRODUCTS' })
 export class Product

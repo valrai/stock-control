@@ -1,19 +1,19 @@
-import { Product } from './../product/product.entity';
 import {
   Column,
-  Entity,
-  ManyToOne,
-  JoinColumn,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
-import { Option } from '../option/option.entity';
 import { OptionValue } from '../option-value/option.value.entity';
-import { IBaseEntity } from 'src/shared/interfaces/base.interface';
-import { IAuditableEntity } from 'src/shared/interfaces/auditable.interface';
-import { ILogicallyExcludableEntity } from 'src/shared/interfaces/logically.excludable.interface';
+import { Option } from '../option/option.entity';
+import { IAuditableEntity } from './../../../shared/interfaces/auditable.interface';
+import { IBaseEntity } from './../../../shared/interfaces/base.interface';
+import { ILogicallyExcludableEntity } from './../../../shared/interfaces/logically.excludable.interface';
+import { Product } from './../product/product.entity';
 
 @Entity({ name: 'PRODUCT_VARIANTS' })
 export class ProductVariant

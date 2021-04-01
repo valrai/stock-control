@@ -1,7 +1,7 @@
+import { ProductVariant } from '../../models/product-variant/product.variant.entity';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductVariant } from 'src/stock/models/product-variant/product.variant.entity';
 
 @Injectable()
 export class ProductVariantService extends TypeOrmCrudService<ProductVariant> {

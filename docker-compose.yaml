@@ -13,12 +13,3 @@ services:
       - '5432:5432'
     volumes:
       - ./src/shared/data/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "3000:80"
-    links:
-      - "db:pgsql-server"

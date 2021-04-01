@@ -1,5 +1,5 @@
+import { ProductVariant } from '../stock/models/product-variant/product.variant.entity';
 import { ProductVariantsController } from './controllers/product-variants/product.variants.controller';
-import { ProductVariant } from 'src/stock/models/product-variant/product.variant.entity';
 import { OptionValue } from './models/option-value/option.value.entity';
 import { Option } from './models/option/option.entity';
 import { Supplier } from './models/supplier/supplier.entity';

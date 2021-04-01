@@ -1,3 +1,6 @@
+import { CategoryService } from './../../services/category/category.service';
+import { Claims } from './../../../shared/auth/decorators/claims.decorator';
+import { CategoryDto } from '../../dtos/category/category.dto';
 import { Category } from '../../models/category/category.entity';
 import { Controller } from '@nestjs/common';
 import {
@@ -10,9 +13,6 @@ import {
   ParsedRequest,
 } from '@nestjsx/crud';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CategoryService } from 'src/stock/services/category/category.service';
-import { Claims } from 'src/shared/auth/decorators/claims.decorator';
-import { CategoryDto } from 'src/stock/dtos/category/category.dto';
 
 @Crud({
   model: {

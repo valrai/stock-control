@@ -1,3 +1,4 @@
+import { Role } from './../../auth/models/role/role.entity';
 import { ILogicallyExcludableEntity } from './../../interfaces/logically.excludable.interface';
 import { IAuditableEntity } from './../../interfaces/auditable.interface';
 import { IBaseEntity } from './../../interfaces/base.interface';
@@ -12,7 +13,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Role } from 'src/shared/auth/models/role/role.entity';
 
 @Entity('USERS')
 export class User
