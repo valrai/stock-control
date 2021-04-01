@@ -1,3 +1,4 @@
+import { DataModule } from './shared/data/data.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     StockModule,
     ConfigModule,
     SharedModule,
+    DataModule,
   ],
   controllers: [],
   providers: [],

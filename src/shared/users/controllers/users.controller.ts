@@ -1,5 +1,4 @@
 import { Claims } from './../../auth/decorators/claims.decorator';
-
 import { Controller } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
@@ -31,7 +30,6 @@ import { UserService } from '../services/users.service';
     join: {
       roles: {
         eager: true,
-        exclude: ['users'],
       },
     },
   },

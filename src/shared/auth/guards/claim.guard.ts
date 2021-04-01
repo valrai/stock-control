@@ -11,7 +11,7 @@ export class ClaimGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    const userRoles = request.user.roles as Role[];
+    const userRoles = (request?.user?.roles ?? []) as Role[];
     const requiredClaim = this.reflector.get<string>(
       'claim',
       context.getHandler(),

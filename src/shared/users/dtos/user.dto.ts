@@ -28,6 +28,7 @@ export class UserDto {
   password: string;
 
   @ValidateNested({ each: true, always: true })
+  @IsDefined({ always: true, each: true })
   roles: Role[];
 
   @IsEmpty({ always: true })
